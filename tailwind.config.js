@@ -5,17 +5,18 @@ module.exports = {
     extend: {
       colors: {
         bocado: {
-          green: { 100: "#E8F3EE", 400: "#58A37A", 600: "#2E7D54" },
-          ivory: "#FAFAF7",
-          slate: { 600: "#4B5563", 900: "#111827" },
-          terracotta: "#C46A4A"
-        }
+          emerald: { 100: "#E6F4F1", 400: "#34B39C", 600: "#12705B" },
+          gold: { 100: "#FFF9E5", 400: "#FFD166", 600: "#E6B800" },
+          ivory: "#FDFCF7",
+          charcoal: { 600: "#3A3A3A", 900: "#181818" },
+          accent: "#E4572E", // Spanish red-orange accent
+        },
       },
       fontFamily: {
         heading: ["Playfair Display", "ui-serif", "Georgia"],
-        body: ["Inter", "ui-sans-serif", "system-ui"]
-      }
-    }
+        body: ["Inter", "ui-sans-serif", "system-ui"],
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
