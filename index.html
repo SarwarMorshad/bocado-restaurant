@@ -1,659 +1,886 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>BOCADO — Spanish Tapas & Bar</title>
     <meta
       name="description"
-      content="BOCADO: Trendy Spanish tapas bar & restaurant. Seasonal tapas, craft cocktails, vegan-friendly, open late. Reserve your table now!"
+      content="BOCADO — Spanish tapas bar & restaurant. Sharing plates, seasonal produce, craft cocktails. Book a table."
     />
-    <meta property="og:title" content="BOCADO — Spanish Tapas & Bar" />
-    <meta
-      property="og:description"
-      content="Trendy Spanish tapas bar & restaurant. Reserve your table now!"
-    />
-    <meta property="og:image" content="public/images/hero.jpg" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="BOCADO — Spanish Tapas & Bar" />
-    <meta
-      name="twitter:description"
-      content="Trendy Spanish tapas bar & restaurant. Reserve your table now!"
-    />
-    <meta name="twitter:image" content="public/images/hero.jpg" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <script defer src="assets/js/main.js"></script>
+
+    <!-- Tailwind CDN (replace with CLI build for production) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ["Playfair Display", "ui-serif", "Georgia"],
+              body: ["Inter", "ui-sans-serif", "system-ui"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        /* Deep green palette */
+        --bg-deep: #0f2a23; /* page bg */
+        --bg-emerald: #13362c; /* section bg */
+        --bg-olive: #194438; /* cards */
+        --green-600: #21a088; /* accent */
+        --green-400: #48c7ae; /* accent light */
+        --green-200: #b7efe4; /* subtle tints */
+        --text: #e7f5f2; /* primary text */
+        --text-muted: #b9d5cf; /* muted */
+      }
+      body {
+        background: radial-gradient(1000px 600px at 10% -10%, #17504022, transparent), var(--bg-deep);
+        color: var(--text);
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans",
+          "Liberation Sans", sans-serif;
+      }
+      .glass {
+        backdrop-filter: saturate(1.1) blur(6px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.03));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .btn-primary {
+        background: var(--green-600);
+        color: var(--bg-deep);
+      }
+      .btn-primary:hover {
+        filter: brightness(1.05);
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .hero-overlay {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(15, 42, 35, 0.82));
+      }
+      :focus-visible {
+        outline: 2px dashed var(--green-400);
+        outline-offset: 2px;
+      }
+    </style>
   </head>
-  <body class="font-body bg-bocado-emerald-100 text-bocado-charcoal-900">
+  <body class="font-body">
     <!-- Header -->
-    <header
-      id="top"
-      class="sticky top-0 z-50 bg-bocado-emerald-600/95 backdrop-blur shadow-lg border-b-4 border-bocado-emerald-400 rounded-b-2xl transition-shadow"
-    >
-      <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 md:py-3">
-        <div class="flex items-center gap-3">
-          <img
-            src="public/images/tapas.png"
-            alt="BOCADO logo"
-            class="w-10 h-10 rounded-full shadow border-2 border-bocado-emerald-400 bg-bocado-emerald-100"
-            style="background: rgba(52, 179, 156, 0.15)"
-          />
-          <span class="font-heading text-2xl md:text-3xl text-white tracking-wide drop-shadow-sm"
-            >BOCADO</span
-          >
-        </div>
-        <ul class="hidden md:flex gap-8 font-semibold items-center">
-          <li>
-            <a
-              href="#menu"
-              class="px-2 py-1 rounded-lg hover:bg-bocado-emerald-400/30 hover:text-white focus:ring-2 focus:ring-bocado-emerald-400 transition"
-              >Menu</a
-            >
-          </li>
-          <li>
-            <a
-              href="#gallery"
-              class="px-2 py-1 rounded-lg hover:bg-bocado-emerald-400/30 hover:text-white focus:ring-2 focus:ring-bocado-emerald-400 transition"
-              >Gallery</a
-            >
-          </li>
-          <li>
-            <a
-              href="#about"
-              class="px-2 py-1 rounded-lg hover:bg-bocado-emerald-400/30 hover:text-white focus:ring-2 focus:ring-bocado-emerald-400 transition"
-              >About</a
-            >
-          </li>
-          <li>
-            <a
-              href="#location"
-              class="px-2 py-1 rounded-lg hover:bg-bocado-emerald-400/30 hover:text-white focus:ring-2 focus:ring-bocado-emerald-400 transition"
-              >Location</a
-            >
-          </li>
+    <header class="fixed inset-x-0 top-0 z-50 glass">
+      <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <a href="#top" class="font-heading text-2xl tracking-wide">BOCADO</a>
+        <button
+          id="navToggle"
+          class="md:hidden p-2 rounded-lg border border-white/10"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+          aria-label="Open menu"
+        >
+          <span class="sr-only">Menu</span>☰
+        </button>
+        <ul class="hidden md:flex gap-6 text-sm font-medium text-[var(--text-muted)]">
+          <li><a href="#highlights" class="hover:text-[var(--green-200)]">Highlights</a></li>
+          <li><a href="#menu" class="hover:text-[var(--green-200)]">Menu</a></li>
+          <li><a href="#gallery" class="hover:text-[var(--green-200)]">Gallery</a></li>
+          <li><a href="#about" class="hover:text-[var(--green-200)]">About</a></li>
+          <li><a href="#location" class="hover:text-[var(--green-200)]">Location</a></li>
           <li>
             <a
               href="#booking"
-              class="ml-4 px-5 py-2 rounded-full bg-gradient-to-r from-bocado-emerald-400 to-bocado-emerald-600 text-white font-bold shadow-lg hover:from-bocado-emerald-600 hover:to-bocado-emerald-400 hover:text-bocado-emerald-100 hover:scale-105 focus:ring-2 focus:ring-bocado-emerald-400 transition-all duration-200"
+              class="inline-flex items-center rounded-full px-4 py-2 btn-primary font-semibold shadow shadow-[rgba(33,160,136,.35)]"
               >Book</a
             >
           </li>
         </ul>
-        <button
-          id="mobileNavBtn"
-          class="md:hidden p-2 rounded-lg border border-bocado-emerald-400 bg-bocado-emerald-100/80 shadow focus:ring-2 focus:ring-bocado-emerald-400 hover:bg-bocado-emerald-400/30 transition"
-          aria-label="Open menu"
-        >
-          <svg
-            class="w-7 h-7 text-white"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
       </nav>
-      <!-- Mobile nav (hidden by default) -->
       <div
         id="mobileNav"
-        class="fixed inset-0 bg-bocado-emerald-100/95 z-40 flex flex-col items-center justify-center gap-8 text-xl font-semibold hidden rounded-b-2xl border-b-4 border-bocado-emerald-400 shadow-lg animate-fade-in"
+        class="md:hidden hidden border-t border-white/10 bg-[var(--bg-emerald)]"
+        role="dialog"
+        aria-modal="true"
       >
-        <button
-          id="closeMobileNav"
-          class="absolute top-4 right-4 p-2 rounded-full bg-bocado-emerald-400 text-white shadow focus:ring-2 focus:ring-bocado-emerald-400 hover:bg-bocado-emerald-600 transition"
-          aria-label="Close menu"
-        >
-          ✕
-        </button>
-        <a
-          href="#menu"
-          class="block py-2 px-6 rounded-lg hover:bg-bocado-emerald-400/30 hover:text-white focus:ring-2 focus:ring-bocado-emerald-400 transition"
-          >Menu</a
-        >
-        <a
-          href="#gallery"
-          class="block py-2 px-6 rounded-lg hover:bg-bocado-green-100 hover:text-bocado-green-600 focus:ring-2 focus:ring-bocado-green-600 transition"
-          >Gallery</a
-        >
-        <a
-          href="#about"
-          class="block py-2 px-6 rounded-lg hover:bg-bocado-green-100 hover:text-bocado-green-600 focus:ring-2 focus:ring-bocado-green-600 transition"
-          >About</a
-        >
-        <a
-          href="#location"
-          class="block py-2 px-6 rounded-lg hover:bg-bocado-green-100 hover:text-bocado-green-600 focus:ring-2 focus:ring-bocado-green-600 transition"
-          >Location</a
-        >
-        <a
-          href="#booking"
-          class="block py-2 px-6 rounded-full bg-gradient-to-r from-bocado-emerald-400 to-bocado-emerald-600 text-white font-bold shadow-lg hover:from-bocado-emerald-600 hover:to-bocado-emerald-400 hover:text-bocado-emerald-100 hover:scale-105 focus:ring-2 focus:ring-bocado-emerald-400 transition-all duration-200"
-          >Book</a
-        >
+        <ul class="px-4 py-3 space-y-2 text-[var(--text)]">
+          <li><a class="block py-1" href="#highlights">Highlights</a></li>
+          <li><a class="block py-1" href="#menu">Menu</a></li>
+          <li><a class="block py-1" href="#gallery">Gallery</a></li>
+          <li><a class="block py-1" href="#about">About</a></li>
+          <li><a class="block py-1" href="#location">Location</a></li>
+          <li><a class="block py-1" href="#booking">Book</a></li>
+        </ul>
       </div>
     </header>
-    <!-- Hero -->
-    <section id="hero" class="relative min-h-[70vh] flex items-center justify-center bg-bocado-emerald-600">
-      <img
-        src="public/images/hero.jpg"
-        alt="BOCADO Tapas Bar"
-        class="absolute inset-0 w-full h-full object-cover object-center opacity-70"
-        loading="eager"
-        width="1920"
-        height="900"
-      />
-      <div class="relative z-10 text-center text-white py-24">
-        <h1 class="font-heading text-4xl md:text-6xl mb-4 drop-shadow text-bocado-emerald-100">
-          BOCADO — Spanish Tapas & Bar
-        </h1>
-        <p class="mb-8 text-lg md:text-2xl">
-          Seasonal tapas, craft cocktails, and a warm, vibrant atmosphere in the heart of the city.
-        </p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-          <a
-            href="#booking"
-            class="px-6 py-3 rounded-full bg-gradient-to-r from-bocado-emerald-400 to-bocado-emerald-600 text-white font-bold shadow-lg hover:from-bocado-emerald-600 hover:to-bocado-emerald-400 hover:text-bocado-emerald-100 hover:scale-105 transition"
-            >Book a Table</a
-          >
-          <a
-            href="#menu"
-            class="px-6 py-3 rounded-full bg-bocado-emerald-100 text-bocado-emerald-600 font-semibold shadow hover:bg-bocado-emerald-400 hover:text-white transition"
-            >View Menu</a
-          >
-        </div>
-      </div>
-    </section>
-    <!-- Highlights / USPs -->
-    <section
-      id="highlights"
-      class="relative py-16 bg-gradient-to-br from-bocado-emerald-100 via-bocado-emerald-400/10 to-bocado-emerald-100 overflow-hidden"
-    >
-      <!-- Floating accent shape -->
-      <div
-        class="absolute -top-24 -left-32 w-[500px] h-[500px] bg-bocado-emerald-400 opacity-20 rounded-full blur-3xl z-0"
-      ></div>
-      <div class="max-w-5xl mx-auto space-y-14 px-4 relative z-10">
-        <!-- Food Highlights Row -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-bocado-emerald-100/90 rounded-2xl shadow-2xl border border-bocado-emerald-400 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(52,179,156,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="/assets/image/tortilla.jpg"
-              alt="Seasonal Tapas"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Seasonal Tapas
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Fresh, rotating menu of Spanish classics.</p>
-          </div>
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-white/90 rounded-2xl shadow-2xl border border-bocado-green-100 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(46,125,84,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="public/images/vegan.png"
-              alt="Vegan Friendly"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Vegan Friendly
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Delicious options for all diets.</p>
-          </div>
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-white/90 rounded-2xl shadow-2xl border border-bocado-green-100 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(46,125,84,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="public/images/chef-hat.png"
-              alt="Expert Chefs"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Expert Chefs
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Authentic Spanish recipes by our culinary team.</p>
-          </div>
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-white/90 rounded-2xl shadow-2xl border border-bocado-green-100 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(46,125,84,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="public/images/late.png"
-              alt="Open Late"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Open Late
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Kitchen open until midnight daily.</p>
-          </div>
-        </div>
-        <!-- Drinks Highlights Row -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-white/90 rounded-2xl shadow-2xl border border-bocado-green-100 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(46,125,84,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="public/images/cocktail.png"
-              alt="Craft Cocktails"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Craft Cocktails
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Signature drinks & Spanish wines.</p>
-          </div>
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-white/90 rounded-2xl shadow-2xl border border-bocado-green-100 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(46,125,84,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="public/images/wine.png"
-              alt="Spanish Wines"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Spanish Wines
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Curated selection of Spanish reds & whites.</p>
-          </div>
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-white/90 rounded-2xl shadow-2xl border border-bocado-green-100 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(46,125,84,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="public/images/coffee.png"
-              alt="Specialty Coffee"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Specialty Coffee
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Premium espresso & Spanish-style coffee.</p>
-          </div>
-          <div
-            class="flex flex-col items-center text-center px-12 py-6 md:px-16 md:py-8 bg-white/90 rounded-2xl shadow-2xl border border-bocado-green-100 hover:scale-105 hover:shadow-[0_8px_32px_0_rgba(46,125,84,0.15)] transition-all duration-300 ease-out animate-fade-in-up group"
-          >
-            <img
-              src="public/images/mocktail.png"
-              alt="Mocktails"
-              class="w-72 aspect-square mb-4 rounded-2xl object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
-            />
-            <h3
-              class="font-heading text-2xl mb-2 text-bocado-emerald-600 drop-shadow font-bold tracking-wide"
-            >
-              Mocktails
-            </h3>
-            <p class="text-bocado-charcoal-600 text-lg">Creative non-alcoholic drinks for everyone.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Menu Preview -->
-    <section id="menu" class="py-16 bg-bocado-emerald-100">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="font-heading text-3xl mb-6 text-bocado-emerald-600">Menu Preview</h2>
-        <div class="flex gap-3 mb-8" role="tablist">
-          <button
-            class="menu-tab px-4 py-2 rounded-full bg-bocado-emerald-400/20 text-bocado-emerald-600 font-semibold focus:ring-2 focus:ring-bocado-emerald-600"
-            data-category="tapas"
-            role="tab"
-            aria-selected="true"
-          >
-            Tapas
-          </button>
-          <button
-            class="menu-tab px-4 py-2 rounded-full text-bocado-emerald-600 font-semibold focus:ring-2 focus:ring-bocado-emerald-600"
-            data-category="mains"
-            role="tab"
-          >
-            Mains
-          </button>
-          <button
-            class="menu-tab px-4 py-2 rounded-full text-bocado-emerald-600 font-semibold focus:ring-2 focus:ring-bocado-emerald-600"
-            data-category="desserts"
-            role="tab"
-          >
-            Desserts
-          </button>
-          <button
-            class="menu-tab px-4 py-2 rounded-full text-bocado-emerald-600 font-semibold focus:ring-2 focus:ring-bocado-emerald-600"
-            data-category="drinks"
-            role="tab"
-          >
-            Drinks
-          </button>
-        </div>
-        <div id="menuPanels">
-          <!-- Menu items will be injected by JS -->
-        </div>
-        <a href="#" class="inline-block mt-6 text-bocado-emerald-600 underline">Download Full Menu (PDF)</a>
-      </div>
-    </section>
-    <!-- Gallery -->
-    <section id="gallery" class="py-16 bg-bocado-emerald-100">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="font-heading text-3xl mb-6 text-bocado-emerald-600">Gallery</h2>
-        <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <!-- Images will be injected by JS -->
-        </div>
-      </div>
-      <!-- Lightbox modal -->
-      <div id="lightbox" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
-        <button
-          id="closeLightbox"
-          class="absolute top-6 right-6 text-bocado-gold-400 text-3xl focus:ring-2 focus:ring-bocado-emerald-600"
-        >
-          ✕
-        </button>
-        <img id="lightboxImg" src="" alt="Gallery image" class="max-h-[80vh] rounded shadow-lg" />
-      </div>
-    </section>
-    <!-- About -->
-    <section id="about" class="py-16 bg-bocado-emerald-100">
-      <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row gap-8 items-center">
+
+    <main id="top" class="pt-16">
+      <!-- Hero -->
+      <section id="hero" class="relative min-h-[75vh] flex items-center">
         <img
-          src="public/images/chef.jpg"
-          alt="Chef at BOCADO"
-          class="w-48 h-48 object-cover rounded-2xl shadow-lg border border-bocado-emerald-400"
+          src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1800&auto=format&fit=crop"
+          alt="Tapas and drinks"
+          class="absolute inset-0 h-full w-full object-cover"
         />
-        <div>
-          <h2 class="font-heading text-3xl mb-4 text-bocado-emerald-600">About BOCADO</h2>
-          <p class="mb-2">
-            Founded by chef Lucía Ramos, BOCADO brings the flavors of Spain to the city with a focus on fresh,
-            local ingredients and a welcoming atmosphere. Our team is passionate about sharing the joy of
-            tapas and Spanish hospitality.
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-white">
+          <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl leading-tight">
+            BOCADO — Spanish Tapas & Bar
+          </h1>
+          <p class="mt-4 max-w-2xl text-lg md:text-xl text-white/90">
+            Sharing plates, seasonal produce, and craft cocktails — designed for long conversations and late
+            evenings.
           </p>
-          <p class="text-bocado-charcoal-600">
-            We source sustainably and support local producers whenever possible.
-          </p>
+          <div class="mt-8 flex gap-3">
+            <a href="#booking" class="btn-primary rounded-full px-6 py-3 text-base font-semibold"
+              >Book a table</a
+            >
+            <a href="#menu" class="btn-ghost rounded-full px-6 py-3 text-base font-semibold">View menu</a>
+          </div>
         </div>
-      </div>
-    </section>
-    <!-- Location & Hours -->
-    <section id="location" class="py-16 bg-bocado-emerald-100">
-      <div class="max-w-4xl mx-auto px-4">
-        <h2 class="font-heading text-3xl mb-6 text-bocado-emerald-600">Location & Hours</h2>
-        <div class="mb-4">
-          <a
-            href="https://maps.google.com/?q=BOCADO+Tapas+Bar"
-            target="_blank"
-            class="text-bocado-emerald-600 underline"
-            >123 Gran Via, 10178 Berlin</a
-          >
-        </div>
-        <table class="mb-4 w-full text-left">
-          <thead>
-            <tr>
-              <th>Day</th>
-              <th>Hours</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mon–Thu</td>
-              <td>17:00 – 00:00</td>
-            </tr>
-            <tr>
-              <td>Fri–Sat</td>
-              <td>16:00 – 01:00</td>
-            </tr>
-            <tr>
-              <td>Sunday</td>
-              <td>16:00 – 23:00</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="flex flex-col md:flex-row gap-4">
-          <a href="tel:+49301234567" class="text-bocado-emerald-600 underline">+49 30 1234567</a>
-          <a href="mailto:hello@bocado-berlin.de" class="text-bocado-emerald-600 underline"
-            >hello@bocado-berlin.de</a
-          >
-        </div>
-        <div class="mt-6">
-          <img
-            src="public/images/map.png"
-            alt="Map to BOCADO"
-            class="w-full max-w-md rounded-2xl shadow border border-bocado-emerald-400"
-          />
-        </div>
-      </div>
-    </section>
-    <!-- Booking -->
-    <section id="booking" class="scroll-mt-24 py-16 bg-bocado-emerald-100">
-      <div class="mx-auto max-w-3xl px-4">
-        <h2 class="font-heading text-3xl mb-6 text-bocado-emerald-600">Book a Table</h2>
-        <form
-          id="bookingForm"
-          class="space-y-4 bg-bocado-emerald-100 p-6 rounded-2xl shadow-lg border border-bocado-emerald-400"
-          autocomplete="off"
-          novalidate
-        >
-          <input
-            type="text"
-            name="company"
-            class="hidden"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-          />
+      </section>
+
+      <!-- Highlights (two rows) -->
+      <section id="highlights" class="py-16 bg-[var(--bg-emerald)]">
+        <div class="mx-auto max-w-6xl px-4 space-y-12">
           <div>
-            <label for="fullName" class="block font-semibold mb-1">Full Name *</label>
-            <input
-              id="fullName"
-              name="fullName"
-              type="text"
-              required
-              class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
-              autocomplete="name"
-            />
-            <div id="error-fullName" class="text-sm text-red-600 mt-1" aria-live="polite"></div>
-          </div>
-          <div>
-            <label for="email" class="block font-semibold mb-1">Email *</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
-              autocomplete="email"
-            />
-            <div id="error-email" class="text-sm text-red-600 mt-1" aria-live="polite"></div>
-          </div>
-          <div>
-            <label for="phone" class="block font-semibold mb-1">Phone</label>
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
-              autocomplete="tel"
-            />
-            <div id="error-phone" class="text-sm text-red-600 mt-1" aria-live="polite"></div>
-          </div>
-          <div class="flex gap-4">
-            <div class="flex-1">
-              <label for="partySize" class="block font-semibold mb-1">Party Size *</label>
-              <select
-                id="partySize"
-                name="partySize"
-                required
-                class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
+            <h2 class="font-heading text-3xl mb-6">Food Highlights</h2>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
               >
-                <option value="">Select</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </select>
-              <div id="error-partySize" class="text-sm text-red-600 mt-1" aria-live="polite"></div>
-            </div>
-            <div class="flex-1">
-              <label for="date" class="block font-semibold mb-1">Date *</label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                required
-                class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
-                min="2025-08-14"
-              />
-              <div id="error-date" class="text-sm text-red-600 mt-1" aria-live="polite"></div>
-            </div>
-            <div class="flex-1">
-              <label for="time" class="block font-semibold mb-1">Time *</label>
-              <select
-                id="time"
-                name="time"
-                required
-                class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
+                <img
+                  src="assets/image/tortilla.jpg"
+                  alt="Seasonal Tapas"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Seasonal Tapas</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Market‑fresh plates inspired by Spain’s regions.</p>
+              </div>
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
               >
-                <option value="">Select</option>
-                <!-- Time slots will be injected by JS -->
-              </select>
-              <div id="error-time" class="text-sm text-red-600 mt-1" aria-live="polite"></div>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <div class="flex-1">
-              <label for="occasion" class="block font-semibold mb-1">Occasion</label>
-              <select
-                id="occasion"
-                name="occasion"
-                class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
+                <img
+                  src="assets/image/tortilla.jpg"
+                  alt="Paella"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Paella</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Classic saffron rice with seafood or veggies.</p>
+              </div>
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
               >
-                <option value="">Select</option>
-                <option value="birthday">Birthday</option>
-                <option value="anniversary">Anniversary</option>
-                <option value="business">Business</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div class="flex-1">
-              <label for="seating" class="block font-semibold mb-1">Seating</label>
-              <select
-                id="seating"
-                name="seating"
-                class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
+                <img
+                  src="assets/image/tortilla.jpg"
+                  alt="Tortilla Española"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Tortilla Española</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Spanish potato omelette.</p>
+              </div>
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
               >
-                <option value="">Select</option>
-                <option value="indoor">Indoor</option>
-                <option value="terrace">Terrace</option>
-                <option value="bar">Bar</option>
-              </select>
+                <img
+                  src="assets/image/tortilla.jpg"
+                  alt="Patatas Bravas"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Patatas Bravas</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Crispy potatoes with spicy brava & aioli.</p>
+              </div>
             </div>
           </div>
           <div>
-            <label for="notes" class="block font-semibold mb-1">Notes</label>
-            <textarea
-              id="notes"
-              name="notes"
-              maxlength="300"
-              rows="3"
-              class="w-full rounded border border-bocado-emerald-400 px-3 py-2 focus:ring-2 focus:ring-bocado-emerald-600 bg-white"
-            ></textarea>
+            <h2 class="font-heading text-3xl mb-6">Drink Highlights</h2>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
+              >
+                <img
+                  src="assets/image/cocktails.jpg"
+                  alt="Craft Cocktails"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Craft Cocktails</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Classics with Mediterranean botanicals.</p>
+              </div>
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
+              >
+                <img
+                  src="assets/image/cocktails.jpg"
+                  alt="Sangria"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Sangria</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Red wine, fresh fruits, and spices.</p>
+              </div>
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
+              >
+                <img
+                  src="assets/image/cocktails.jpg"
+                  alt="Gin Tónico"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Gin Tónico</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Spanish‑style gin & tonic.</p>
+              </div>
+              <div
+                class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
+              >
+                <img
+                  src="assets/image/cocktails.jpg"
+                  alt="Vermouth"
+                  class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
+                />
+                <h3 class="font-semibold">Vermouth</h3>
+                <p class="mt-2 text-[var(--text-muted)]">Aperitif with herbs & spices.</p>
+              </div>
+            </div>
           </div>
-          <label class="flex items-start gap-3 text-sm">
-            <input type="checkbox" name="consent" id="consent" required />
-            I agree to the <a href="#" class="text-bocado-emerald-600 underline ml-1">privacy policy</a> and
-            <a href="#" class="text-bocado-emerald-600 underline ml-1">terms</a>.
-          </label>
-          <div class="flex items-center gap-3">
+        </div>
+      </section>
+
+      <!-- Menu Preview with tabs -->
+      <section id="menu" class="py-16">
+        <div class="mx-auto max-w-6xl px-4">
+          <h2 class="font-heading text-3xl mb-6">Menu Highlights</h2>
+          <div class="flex flex-wrap gap-2" role="tablist" aria-label="Menu categories">
             <button
-              id="submitBtn"
-              class="inline-flex items-center rounded-full bg-gradient-to-r from-bocado-emerald-400 to-bocado-emerald-600 px-5 py-2.5 text-white font-bold shadow-lg hover:from-bocado-emerald-600 hover:to-bocado-emerald-400 hover:text-bocado-emerald-100 hover:scale-105 transition"
+              class="tab active rounded-full px-4 py-2 border border-white/10 bg-[var(--bg-olive)] text-[var(--text)]"
+              data-tab="tapas"
             >
-              Submit
+              Tapas
             </button>
-            <div id="formStatus" class="text-sm" role="status" aria-live="polite"></div>
+            <button
+              class="tab rounded-full px-4 py-2 border border-white/10 bg-[var(--bg-olive)] text-[var(--text-muted)]"
+              data-tab="mains"
+            >
+              Mains
+            </button>
+            <button
+              class="tab rounded-full px-4 py-2 border border-white/10 bg-[var(--bg-olive)] text-[var(--text-muted)]"
+              data-tab="desserts"
+            >
+              Desserts
+            </button>
+            <button
+              class="tab rounded-full px-4 py-2 border border-white/10 bg-[var(--bg-olive)] text-[var(--text-muted)]"
+              data-tab="drinks"
+            >
+              Drinks
+            </button>
           </div>
-        </form>
-      </div>
-    </section>
+          <div class="mt-8">
+            <div class="tab-panel grid gap-6 md:grid-cols-2" data-panel="tapas">
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Patatas Bravas</h3>
+                  <span>7.5€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Crispy potatoes, spicy brava sauce, aioli.</p>
+              </article>
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Gambas al Ajillo</h3>
+                  <span>12€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Garlic prawns sizzling in olive oil.</p>
+              </article>
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Pan con Tomate</h3>
+                  <span>6€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Grilled bread, tomato, garlic, olive oil.</p>
+              </article>
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Tortilla Española</h3>
+                  <span>8€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Classic potato omelette.</p>
+              </article>
+            </div>
+            <div class="tab-panel hidden grid gap-6 md:grid-cols-2" data-panel="mains">
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Paella de Marisco</h3>
+                  <span>22€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Seafood paella with saffron rice.</p>
+              </article>
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Iberico Platter</h3>
+                  <span>24€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Cured meats and cheeses.</p>
+              </article>
+            </div>
+            <div class="tab-panel hidden grid gap-6 md:grid-cols-2" data-panel="desserts">
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Crema Catalana</h3>
+                  <span>7€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Citrus‑spiced custard, burnt sugar top.</p>
+              </article>
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Churros & Chocolate</h3>
+                  <span>8€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Cinnamon sugar, thick hot chocolate.</p>
+              </article>
+            </div>
+            <div class="tab-panel hidden grid gap-6 md:grid-cols-2" data-panel="drinks">
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Sangria</h3>
+                  <span>7€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Red wine, fruit, spice.</p>
+              </article>
+              <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
+                <div class="flex justify-between">
+                  <h3 class="font-semibold">Gin Tónico</h3>
+                  <span>10€</span>
+                </div>
+                <p class="text-[var(--text-muted)] mt-1">Spanish‑style gin & tonic.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery" class="py-16 bg-[var(--bg-emerald)]">
+        <div class="mx-auto max-w-6xl px-4">
+          <h2 class="font-heading text-3xl mb-6">Gallery</h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <button class="gallery-thumb relative group" aria-label="Open image 1">
+              <img
+                src="/assets/image/restaurant-1.webp"
+                alt="Tapas platter"
+                class="h-48 w-full object-cover rounded-xl shadow"
+              />
+            </button>
+            <button class="gallery-thumb relative group" aria-label="Open image 2">
+              <img
+                src="/assets/image/restaurant-2.jpg"
+                alt="Cocktail"
+                class="h-48 w-full object-cover rounded-xl shadow"
+              />
+            </button>
+            <button class="gallery-thumb relative group" aria-label="Open image 3">
+              <img
+                src="/assets/image/restaurant-3.jpg"
+                alt="Bar interior"
+                class="h-48 w-full object-cover rounded-xl shadow"
+              />
+            </button>
+            <button class="gallery-thumb relative group" aria-label="Open image 4">
+              <img
+                src="/assets/image/restaurant-4.avif"
+                alt="Dessert"
+                class="h-48 w-full object-cover rounded-xl shadow"
+              />
+            </button>
+            <button class="gallery-thumb relative group" aria-label="Open image 5">
+              <img
+                src="/assets/image/restaurant-5.webp"
+                alt="Seafood"
+                class="h-48 w-full object-cover rounded-xl shadow"
+              />
+            </button>
+            <button class="gallery-thumb relative group" aria-label="Open image 6">
+              <img
+                src="/assets/image/restaurant-6.jpg"
+                alt="Dining room"
+                class="h-48 w-full object-cover rounded-xl shadow"
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="py-16">
+        <div class="mx-auto max-w-6xl px-4 grid gap-8 md:grid-cols-2 items-center">
+          <div>
+            <h2 class="font-heading text-3xl mb-4">About BOCADO</h2>
+            <p class="text-[var(--text-muted)]">
+              Rooted in Barcelona’s tapas culture, BOCADO brings convivial shared dining to our neighborhood.
+              We source the best local produce and Spanish staples, pairing them with a thoughtful bar
+              program.
+            </p>
+          </div>
+          <img
+            src="/assets/image/chef.png"
+            alt="Chef plating tapas"
+            class="w-full rounded-2xl shadow border border-white/10"
+          />
+        </div>
+      </section>
+
+      <!-- Location & Hours -->
+      <section id="location" class="py-16 bg-[var(--bg-emerald)]">
+        <div class="mx-auto max-w-6xl px-4 grid gap-8 md:grid-cols-2">
+          <div>
+            <h2 class="font-heading text-3xl mb-4">Visit Us</h2>
+            <p class="text-[var(--text-muted)]">Carrer de la Tapa 7, 08002 Barcelona</p>
+            <p class="mt-1">
+              <a
+                class="text-[var(--green-200)] underline"
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener"
+                >Open in Maps</a
+              >
+            </p>
+            <div class="mt-4 space-y-1 text-[var(--text-muted)]">
+              <p>Mon–Thu: 17:00–23:00</p>
+              <p>Fri–Sat: 17:00–01:00</p>
+              <p>Sun: 17:00–22:00</p>
+            </div>
+            <div class="mt-4 space-y-1">
+              <a href="tel:+34123456789" class="text-[var(--green-200)] underline">+34 123 456 789</a><br />
+              <a href="mailto:hello@bocado.example" class="text-[var(--green-200)] underline"
+                >hello@bocado.example</a
+              >
+            </div>
+          </div>
+          <iframe
+            title="Map"
+            class="w-full h-72 rounded-2xl border border-white/10 shadow"
+            loading="lazy"
+            src="https://maps.google.com/maps?q=Barcelona&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- Booking (elegant) -->
+      <section id="booking" class="scroll-mt-24 py-20">
+        <div class="mx-auto max-w-3xl px-4">
+          <div class="text-center mb-10">
+            <h2 class="font-heading text-4xl">Reserve Your Table</h2>
+            <p class="mt-2 text-[var(--text-muted)]">
+              We’ll confirm by email. For groups of 8+ please call us.
+            </p>
+          </div>
+
+          <form id="bookingForm" class="group space-y-6 glass p-8 rounded-3xl shadow-xl" novalidate>
+            <div class="h-1 w-24 bg-[var(--green-600)]/90 rounded-full mx-auto -mt-4 mb-2"></div>
+            <input
+              type="text"
+              name="company"
+              class="hidden"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="relative">
+                <input
+                  name="fullName"
+                  required
+                  id="fullName"
+                  class="peer w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition placeholder-transparent"
+                  placeholder="Your name"
+                />
+                <label
+                  for="fullName"
+                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
+                  >Full Name *</label
+                >
+                <p class="mt-1 text-xs text-red-300 hidden" data-error="fullName"></p>
+              </div>
+              <div class="relative">
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  id="email"
+                  class="peer w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition placeholder-transparent"
+                  placeholder="you@example.com"
+                />
+                <label
+                  for="email"
+                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
+                  >Email *</label
+                >
+                <p class="mt-1 text-xs text-red-300 hidden" data-error="email"></p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="relative">
+                <select
+                  name="partySize"
+                  required
+                  id="partySize"
+                  class="peer appearance-none w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
+                >
+                  <option value=""></option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                </select>
+                <label
+                  for="partySize"
+                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
+                  >Party Size *</label
+                >
+                <p class="mt-1 text-xs text-red-300 hidden" data-error="partySize"></p>
+              </div>
+              <div class="relative">
+                <input
+                  name="date"
+                  type="date"
+                  required
+                  id="date"
+                  class="peer w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
+                  placeholder=" "
+                />
+                <label
+                  for="date"
+                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
+                  >Date *</label
+                >
+                <p class="mt-1 text-xs text-red-300 hidden" data-error="date"></p>
+              </div>
+              <div class="relative">
+                <select
+                  name="time"
+                  required
+                  id="time"
+                  class="peer appearance-none w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
+                >
+                  <option value=""></option>
+                  <option>17:00</option>
+                  <option>17:30</option>
+                  <option>18:00</option>
+                  <option>18:30</option>
+                  <option>19:00</option>
+                  <option>19:30</option>
+                  <option>20:00</option>
+                  <option>20:30</option>
+                  <option>21:00</option>
+                </select>
+                <label
+                  for="time"
+                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
+                  >Time *</label
+                >
+                <p class="mt-1 text-xs text-red-300 hidden" data-error="time"></p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="relative">
+                <select
+                  name="occasion"
+                  id="occasion"
+                  class="peer appearance-none w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
+                >
+                  <option value=""></option>
+                  <option>birthday</option>
+                  <option>anniversary</option>
+                  <option>business</option>
+                  <option>other</option>
+                </select>
+                <label
+                  for="occasion"
+                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
+                  >Occasion</label
+                >
+              </div>
+              <div class="sm:col-span-2">
+                <span class="block text-sm font-medium mb-2 text-[var(--text-muted)]"
+                  >Seating preference</span
+                >
+                <div class="grid grid-cols-3 gap-3">
+                  <label
+                    class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center justify-center gap-2 has-[:checked]:border-[var(--green-600)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--green-600)]/30 cursor-pointer"
+                    ><input type="radio" name="seating" value="indoor" class="sr-only" /> Indoor</label
+                  >
+                  <label
+                    class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center justify-center gap-2 has-[:checked]:border-[var(--green-600)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--green-600)]/30 cursor-pointer"
+                    ><input type="radio" name="seating" value="terrace" class="sr-only" /> Terrace</label
+                  >
+                  <label
+                    class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center justify-center gap-2 has-[:checked]:border-[var(--green-600)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--green-600)]/30 cursor-pointer"
+                    ><input type="radio" name="seating" value="bar" class="sr-only" /> Bar</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <textarea
+                name="notes"
+                id="notes"
+                rows="3"
+                maxlength="300"
+                class="peer w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition placeholder-transparent"
+                placeholder="Additional requests"
+              ></textarea>
+              <label
+                for="notes"
+                class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
+                >Notes (allergies, requests)</label
+              >
+            </div>
+
+            <div class="space-y-4">
+              <label class="flex items-start gap-3 text-sm text-[var(--text-muted)]"
+                ><input
+                  type="checkbox"
+                  name="consent"
+                  required
+                  class="mt-1 h-4 w-4 rounded border-white/20 text-[var(--bg-deep)] focus:ring-[var(--green-600)]"
+                />
+                I agree to the
+                <a href="#" class="text-[var(--green-200)] underline ml-1">privacy policy</a>.</label
+              >
+              <div class="flex items-center gap-3">
+                <button
+                  id="submitBtn"
+                  class="inline-flex items-center rounded-full px-6 py-3 font-semibold text-[var(--bg-deep)] bg-[var(--green-600)] shadow-lg shadow-[rgba(33,160,136,.25)] hover:shadow-[rgba(33,160,136,.35)] hover:-translate-y-0.5 active:translate-y-0 transition"
+                >
+                  Submit Booking
+                </button>
+                <div
+                  id="formStatus"
+                  class="text-sm text-[var(--text-muted)]"
+                  role="status"
+                  aria-live="polite"
+                ></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
     <!-- Footer -->
-    <footer class="py-8 bg-bocado-emerald-600 border-t border-bocado-emerald-400 mt-12">
-      <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex gap-4">
-          <a href="#" class="text-bocado-emerald-100 underline">Privacy Policy</a>
-          <a href="#" class="text-bocado-emerald-100 underline">Imprint</a>
-          <a href="#" class="text-bocado-emerald-100 underline">Cookies</a>
-        </div>
-        <div class="flex gap-4">
-          <a href="#" aria-label="Instagram" class="text-bocado-emerald-100"
-            ><svg
-              width="24"
-              height="24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <rect x="2" y="2" width="20" height="20" rx="5" />
-              <circle cx="12" cy="12" r="5" />
-              <circle cx="17" cy="7" r="1.5" /></svg
-          ></a>
-          <a href="#" aria-label="Facebook" class="text-bocado-emerald-100"
-            ><svg
-              width="24"
-              height="24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <rect x="2" y="2" width="20" height="20" rx="5" />
-              <path d="M16 8h-2a2 2 0 0 0-2 2v2h4" /></svg
-          ></a>
-        </div>
-        <div class="text-bocado-emerald-100 text-sm">© 2025 BOCADO. All rights reserved.</div>
+    <footer class="py-10 border-t border-white/10 bg-[var(--bg-emerald)]">
+      <div
+        class="mx-auto max-w-6xl px-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      >
+        <p class="font-heading text-xl">BOCADO</p>
+        <nav class="flex gap-6 text-sm text-[var(--text-muted)]">
+          <a href="#" class="hover:text-[var(--green-200)]">Privacy</a>
+          <a href="#" class="hover:text-[var(--green-200)]">Imprint</a>
+          <a href="#" class="hover:text-[var(--green-200)]">Instagram</a>
+        </nav>
+        <p class="text-sm text-[var(--text-muted)]">© <span id="year"></span> BOCADO. All rights reserved.</p>
       </div>
     </footer>
-    <!-- JSON-LD for LocalBusiness -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "name": "BOCADO",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "123 Gran Via",
-          "addressLocality": "Berlin",
-          "postalCode": "10178",
-          "addressCountry": "DE"
-        },
-        "telephone": "+49 30 1234567",
-        "openingHours": ["Mo-Th 17:00-00:00", "Fr-Sa 16:00-01:00", "Su 16:00-23:00"]
+
+    <!-- Lightbox Modal -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/80 p-4"
+      role="dialog"
+      aria-modal="true"
+    >
+      <button id="lightboxClose" class="absolute top-4 right-4 text-white text-2xl" aria-label="Close">
+        ×
+      </button>
+      <img id="lightboxImg" src="" alt="Gallery image" class="max-h-[85vh] max-w-[90vw] rounded-xl shadow" />
+    </div>
+
+    <!-- Inline JS for interactions -->
+    <script>
+      const $ = (s, root = document) => root.querySelector(s);
+      const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
+
+      // Current year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear().toString();
+
+      // Mobile nav
+      const navToggle = $("#navToggle");
+      const mobileNav = $("#mobileNav");
+      if (navToggle && mobileNav) {
+        navToggle.addEventListener("click", () => {
+          const open = mobileNav.classList.toggle("hidden") ? false : true;
+          navToggle.setAttribute("aria-expanded", String(open));
+        });
+        $$("#mobileNav a").forEach((a) =>
+          a.addEventListener("click", () => {
+            mobileNav.classList.add("hidden");
+            navToggle.setAttribute("aria-expanded", "false");
+          })
+        );
       }
+
+      // Smooth scrolling with focus management
+      $$('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const id = link.getAttribute("href");
+          if (!id || id === "#") return;
+          const target = $(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => {
+            const h2 = target.querySelector("h2,h1");
+            if (h2) h2.setAttribute("tabindex", "-1"), h2.focus({ preventScroll: true });
+          }, 500);
+        });
+      });
+
+      // Tabs (Menu)
+      const tabs = $$(".tab");
+      const panels = $$(".tab-panel");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          const target = tab.dataset.tab;
+          panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== target));
+        });
+      });
+
+      // Gallery lightbox
+      const lightbox = $("#lightbox");
+      const lightboxImg = $("#lightboxImg");
+      const lightboxClose = $("#lightboxClose");
+      $$(".gallery-thumb img").forEach((img) => {
+        img.addEventListener("click", () => {
+          lightboxImg.src = img.src.replace("w=800", "w=1600");
+          lightbox.classList.remove("hidden");
+          lightboxClose.focus();
+        });
+      });
+      lightboxClose?.addEventListener("click", () => lightbox.classList.add("hidden"));
+      lightbox?.addEventListener("click", (e) => {
+        if (e.target === lightbox) lightbox.classList.add("hidden");
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") lightbox.classList.add("hidden");
+      });
+
+      // Booking form
+      const form = $("#bookingForm");
+      let formStart = Date.now();
+      form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const status = $("#formStatus");
+        const btn = $("#submitBtn");
+        if (status) status.textContent = "";
+        const data = Object.fromEntries(new FormData(form));
+
+        // anti-spam
+        if (data.company) return;
+        if (Date.now() - formStart < 1500) return;
+
+        // required validations
+        const errors = {};
+        if (!data.fullName) errors.fullName = "Please enter your full name.";
+        if (!data.email || !/^[^@]+@[^@]+\.[^@]+$/.test(data.email))
+          errors.email = "Enter a valid email address.";
+        if (!data.partySize) errors.partySize = "Select party size.";
+        if (!data.date) errors.date = "Choose a date.";
+        if (!data.time) errors.time = "Choose a time.";
+        if (!form.consent?.checked) errors.consent = "Please agree to the privacy policy.";
+
+        // past date prevention
+        if (data.date) {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          const chosen = new Date(data.date + "T00:00:00");
+          if (chosen < today) errors.date = "Please choose a future date.";
+        }
+
+        // render errors
+        $$("[data-error]").forEach((p) => p.classList.add("hidden"));
+        if (Object.keys(errors).length) {
+          for (const [k, v] of Object.entries(errors)) {
+            const el = document.querySelector(`[data-error="${k}"]`);
+            if (el) {
+              el.textContent = v;
+              el.classList.remove("hidden");
+            }
+          }
+          if (status) {
+            status.textContent = "Please correct the highlighted fields.";
+            status.className = "text-red-300";
+          }
+          return;
+        }
+
+        if (btn) btn.disabled = true;
+        if (status) {
+          status.textContent = "Sending...";
+          status.className = "text-[var(--text-muted)]";
+        }
+
+        try {
+          const res = await fetch("/api/book", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              fullName: data.fullName,
+              email: data.email,
+              phone: data.phone || null,
+              partySize: Number(data.partySize),
+              date: data.date,
+              time: data.time,
+              occasion: data.occasion || null,
+              seating: data.seating || null,
+              notes: data.notes || null,
+              consent: true,
+            }),
+          });
+          const body = await res.json().catch(() => ({}));
+          if (res.status === 201 && body.ok) {
+            if (status) {
+              status.textContent = `Booking request sent. Ref: ${
+                body.reference || "BOC-" + new Date().toISOString().slice(0, 10) + "-00001"
+              }`;
+              status.className = "text-[var(--green-200)]";
+            }
+            form.reset();
+            formStart = Date.now();
+          } else {
+            throw new Error(body.error || "Server error");
+          }
+        } catch (err) {
+          if (status) {
+            status.textContent = "Sorry, something went wrong. Please try again or call us.";
+            status.className = "text-red-300";
+          }
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
     </script>
   </body>
 </html>
