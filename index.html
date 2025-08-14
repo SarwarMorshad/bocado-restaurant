@@ -82,17 +82,11 @@
     <!-- Header -->
     <header class="fixed inset-x-0 top-0 z-50 glass">
       <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <a href="#top" class="font-heading text-2xl tracking-wide">BOCADO</a>
-        <button
-          id="navToggle"
-          class="md:hidden p-2 rounded-lg border border-white/10"
-          aria-expanded="false"
-          aria-controls="mobileNav"
-          aria-label="Open menu"
-        >
-          <span class="sr-only">Menu</span>☰
-        </button>
-        <ul class="hidden md:flex gap-6 text-sm font-medium text-[var(--text-muted)]">
+        <!-- Logo -->
+        <a href="#top" class="font-heading text-2xl tracking-wide flex items-center">BOCADO</a>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--text-muted)]">
           <li><a href="#highlights" class="hover:text-[var(--green-200)]">Highlights</a></li>
           <li><a href="#menu" class="hover:text-[var(--green-200)]">Menu</a></li>
           <li><a href="#gallery" class="hover:text-[var(--green-200)]">Gallery</a></li>
@@ -101,12 +95,24 @@
           <li>
             <a
               href="#booking"
-              class="inline-flex items-center rounded-full px-4 py-2 btn-primary font-semibold shadow shadow-[rgba(33,160,136,.35)]"
+              class="inline-flex items-center rounded-2xl px-8 py-3 btn-primary font-semibold shadow shadow-[rgba(33,160,136,.35)]"
               >Book</a
             >
           </li>
         </ul>
+
+        <!-- Mobile Toggle -->
+        <button
+          id="navToggle"
+          class="md:hidden p-2 rounded-lg border border-white/10 flex items-center justify-center"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+          aria-label="Open menu"
+        >
+          <span class="sr-only">Menu</span>☰
+        </button>
       </nav>
+
       <div
         id="mobileNav"
         class="md:hidden hidden border-t border-white/10 bg-[var(--bg-emerald)]"
@@ -142,10 +148,12 @@
             evenings.
           </p>
           <div class="mt-8 flex gap-3">
-            <a href="#booking" class="btn-primary rounded-full px-6 py-3 text-base font-semibold"
+            <a href="#booking" class="btn-primary rounded-2xl px-6 py-3 text-base font-semibold"
               >Book a table</a
             >
-            <a href="#menu" class="btn-ghost rounded-full px-6 py-3 text-base font-semibold">View menu</a>
+            <a id="viewMenuBtn" href="#" class="btn-ghost rounded-full px-6 py-3 text-base font-semibold">
+              View menu
+            </a>
           </div>
         </div>
       </section>
@@ -721,6 +729,38 @@
       <img id="lightboxImg" src="" alt="Gallery image" class="max-h-[85vh] max-w-[90vw] rounded-xl shadow" />
     </div>
 
+    <!-- PDF Menu Modal -->
+    <div
+      id="pdfModal"
+      class="fixed inset-0 z-[70] hidden bg-black/80 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pdfTitle"
+      aria-hidden="true"
+    >
+      <div class="relative w-full max-w-4xl h-[80vh] flex flex-col">
+        <!-- Close button -->
+        <button id="pdfClose" class="absolute -top-10 right-0 text-white text-2xl" aria-label="Close">
+          ×
+        </button>
+
+        <!-- PDF container -->
+        <div class="glass rounded-2xl border border-white/10 shadow-xl overflow-hidden flex-1">
+          <h2 id="pdfTitle" class="sr-only">BOCADO — Menu</h2>
+          <iframe
+            title="BOCADO Menu PDF"
+            src="/assets/menu/bocado_menu.pdf#toolbar=0&navpanes=0"
+            class="w-full h-full"
+          ></iframe>
+        </div>
+
+        <!-- Fallback link -->
+        <p class="mt-3 text-center text-[var(--text-muted)] text-sm">
+          Having trouble? <a href="/assets/menu/bocado_menu.pdf" class="underline">Open the PDF</a>
+        </p>
+      </div>
+    </div>
+
     <!-- Inline JS for interactions -->
     <script>
       const $ = (s, root = document) => root.querySelector(s);
@@ -886,6 +926,36 @@
         } finally {
           if (btn) btn.disabled = false;
         }
+      });
+      // PDF Menu modal
+      const viewMenuBtn = document.querySelector("#viewMenuBtn");
+      const pdfModal = document.querySelector("#pdfModal");
+      const pdfClose = document.querySelector("#pdfClose");
+
+      function openPdfModal() {
+        pdfModal.classList.remove("hidden");
+        pdfModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        pdfClose.focus();
+      }
+
+      function closePdfModal() {
+        pdfModal.classList.add("hidden");
+        pdfModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      viewMenuBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        openPdfModal();
+      });
+
+      pdfClose?.addEventListener("click", closePdfModal);
+      pdfModal?.addEventListener("click", (e) => {
+        if (e.target === pdfModal) closePdfModal();
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePdfModal();
       });
     </script>
   </body>
