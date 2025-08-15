@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind CDN (replace with CLI build for production) -->
+    <!-- Tailwind (CDN for demo; use CLI in prod) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -32,60 +32,16 @@
       };
     </script>
 
-    <style>
-      :root {
-        /* Deep green palette */
-        --bg-deep: #0f2a23; /* page bg */
-        --bg-emerald: #13362c; /* section bg */
-        --bg-olive: #194438; /* cards */
-        --green-600: #21a088; /* accent */
-        --green-400: #48c7ae; /* accent light */
-        --green-200: #b7efe4; /* subtle tints */
-        --text: #e7f5f2; /* primary text */
-        --text-muted: #b9d5cf; /* muted */
-      }
-      body {
-        background: radial-gradient(1000px 600px at 10% -10%, #17504022, transparent), var(--bg-deep);
-        color: var(--text);
-        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans",
-          "Liberation Sans", sans-serif;
-      }
-      .glass {
-        backdrop-filter: saturate(1.1) blur(6px);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.03));
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .btn-primary {
-        background: var(--green-600);
-        color: var(--bg-deep);
-      }
-      .btn-primary:hover {
-        filter: brightness(1.05);
-      }
-      .btn-ghost {
-        background: rgba(255, 255, 255, 0.08);
-        color: var(--text);
-      }
-      .btn-ghost:hover {
-        background: rgba(255, 255, 255, 0.12);
-      }
-      .hero-overlay {
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(15, 42, 35, 0.82));
-      }
-      :focus-visible {
-        outline: 2px dashed var(--green-400);
-        outline-offset: 2px;
-      }
-    </style>
+    <!-- App styles -->
+    <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body class="font-body">
     <!-- Header -->
     <header class="fixed inset-x-0 top-0 z-50 glass">
       <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <!-- Logo -->
         <a href="#top" class="font-heading text-2xl tracking-wide flex items-center">BOCADO</a>
 
-        <!-- Desktop Menu -->
+        <!-- Desktop -->
         <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--text-muted)]">
           <li><a href="#highlights" class="hover:text-[var(--green-200)]">Highlights</a></li>
           <li><a href="#menu" class="hover:text-[var(--green-200)]">Menu</a></li>
@@ -101,7 +57,7 @@
           </li>
         </ul>
 
-        <!-- Mobile Toggle -->
+        <!-- Mobile toggle -->
         <button
           id="navToggle"
           class="md:hidden p-2 rounded-lg border border-white/10 flex items-center justify-center"
@@ -113,6 +69,7 @@
         </button>
       </nav>
 
+      <!-- Mobile menu -->
       <div
         id="mobileNav"
         class="md:hidden hidden border-t border-white/10 bg-[var(--bg-emerald)]"
@@ -151,14 +108,14 @@
             <a href="#booking" class="btn-primary rounded-2xl px-6 py-3 text-base font-semibold"
               >Book a table</a
             >
-            <a id="viewMenuBtn" href="#" class="btn-ghost rounded-full px-6 py-3 text-base font-semibold">
-              View menu
-            </a>
+            <a id="viewMenuBtn" href="#" class="btn-ghost rounded-full px-6 py-3 text-base font-semibold"
+              >View menu</a
+            >
           </div>
         </div>
       </section>
 
-      <!-- Highlights (two rows) -->
+      <!-- Highlights -->
       <section id="highlights" class="py-16 bg-[var(--bg-emerald)]">
         <div class="mx-auto max-w-6xl px-4 space-y-12">
           <div>
@@ -173,7 +130,7 @@
                   class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
                 />
                 <h3 class="font-semibold">Seasonal Tapas</h3>
-                <p class="mt-2 text-[var(--text-muted)]">Market‑fresh plates inspired by Spain’s regions.</p>
+                <p class="mt-2 text-[var(--text-muted)]">Market-fresh plates inspired by Spain’s regions.</p>
               </div>
               <div
                 class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
@@ -210,6 +167,7 @@
               </div>
             </div>
           </div>
+
           <div>
             <h2 class="font-heading text-3xl mb-6">Drink Highlights</h2>
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -244,7 +202,7 @@
                   class="h-72 w-48 object-cover rounded-xl mb-3 shadow"
                 />
                 <h3 class="font-semibold">Gin Tónico</h3>
-                <p class="mt-2 text-[var(--text-muted)]">Spanish‑style gin & tonic.</p>
+                <p class="mt-2 text-[var(--text-muted)]">Spanish-style gin & tonic.</p>
               </div>
               <div
                 class="rounded-2xl p-6 shadow-lg border border-white/10 bg-[var(--bg-olive)] flex flex-col items-center"
@@ -262,7 +220,7 @@
         </div>
       </section>
 
-      <!-- Menu Preview with tabs -->
+      <!-- Menu (tabs) -->
       <section id="menu" class="py-16">
         <div class="mx-auto max-w-6xl px-4">
           <h2 class="font-heading text-3xl mb-6">Menu Highlights</h2>
@@ -292,6 +250,7 @@
               Drinks
             </button>
           </div>
+
           <div class="mt-8">
             <div class="tab-panel grid gap-6 md:grid-cols-2" data-panel="tapas">
               <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
@@ -323,6 +282,7 @@
                 <p class="text-[var(--text-muted)] mt-1">Classic potato omelette.</p>
               </article>
             </div>
+
             <div class="tab-panel hidden grid gap-6 md:grid-cols-2" data-panel="mains">
               <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
                 <div class="flex justify-between">
@@ -339,13 +299,14 @@
                 <p class="text-[var(--text-muted)] mt-1">Cured meats and cheeses.</p>
               </article>
             </div>
+
             <div class="tab-panel hidden grid gap-6 md:grid-cols-2" data-panel="desserts">
               <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
                 <div class="flex justify-between">
                   <h3 class="font-semibold">Crema Catalana</h3>
                   <span>7€</span>
                 </div>
-                <p class="text-[var(--text-muted)] mt-1">Citrus‑spiced custard, burnt sugar top.</p>
+                <p class="text-[var(--text-muted)] mt-1">Citrus-spiced custard, burnt sugar top.</p>
               </article>
               <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
                 <div class="flex justify-between">
@@ -355,6 +316,7 @@
                 <p class="text-[var(--text-muted)] mt-1">Cinnamon sugar, thick hot chocolate.</p>
               </article>
             </div>
+
             <div class="tab-panel hidden grid gap-6 md:grid-cols-2" data-panel="drinks">
               <article class="p-5 rounded-xl bg-[var(--bg-olive)] shadow border border-white/10">
                 <div class="flex justify-between">
@@ -368,7 +330,7 @@
                   <h3 class="font-semibold">Gin Tónico</h3>
                   <span>10€</span>
                 </div>
-                <p class="text-[var(--text-muted)] mt-1">Spanish‑style gin & tonic.</p>
+                <p class="text-[var(--text-muted)] mt-1">Spanish-style gin & tonic.</p>
               </article>
             </div>
           </div>
@@ -445,7 +407,7 @@
         </div>
       </section>
 
-      <!-- Location & Hours -->
+      <!-- Location -->
       <section id="location" class="py-16 bg-[var(--bg-emerald)]">
         <div class="mx-auto max-w-6xl px-4 grid gap-8 md:grid-cols-2">
           <div>
@@ -454,7 +416,7 @@
             <p class="mt-1">
               <a
                 class="text-[var(--green-200)] underline"
-                href="https://www.google.com/maps/place/Am+Dachsbau+12,+13503+Berlin/@52.6082825,13.2280735,529m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47a8557516e4fe09:0x88d4cca46ab00f94!8m2!3d52.6082825!4d13.2306484!16s%2Fg%2F11c43v7f3m?entry=ttu&g_ep=EgoyMDI1MDgxMi4wIKXMDSoASAFQAw%3D%3D"
+                href="https://www.google.com/maps/place/Am+Dachsbau+12,+13503+Berlin"
                 target="_blank"
                 rel="noopener"
                 >Open in Maps</a
@@ -477,17 +439,11 @@
             class="w-full h-72 rounded-2xl border border-white/10 shadow"
             loading="lazy"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2302.9798325484653!2d13.228073476540018!3d52.608282472084376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a8557516e4fe09%3A0x88d4cca46ab00f94!2sAm%20Dachsbau%2012%2C%2013503%20Berlin!5e1!3m2!1sen!2sde!4v1755212712781!5m2!1sen!2sde"
-            width="600"
-            height="450"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </section>
 
-      <!-- Booking (elegant) -->
+      <!-- Booking -->
       <section id="booking" class="scroll-mt-24 py-20">
         <div class="mx-auto max-w-3xl px-4">
           <div class="text-center mb-10">
@@ -508,6 +464,7 @@
               aria-hidden="true"
             />
 
+            <!-- Name + Email -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div class="relative">
                 <input
@@ -542,118 +499,342 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div class="relative">
-                <select
-                  name="partySize"
-                  required
-                  id="partySize"
-                  class="peer appearance-none w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
+            <!-- Party Size -->
+            <div class="relative" id="partyDropdown">
+              <input type="hidden" name="partySize" id="partySizeValue" value="" />
+              <!-- <span class="absolute left-4 top-1 text-xs text-[var(--green-400)]">Party Size *</span> -->
+
+              <button
+                id="partyButton"
+                type="button"
+                class="w-full mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pr-10 text-left focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition text-[var(--text)] hover:bg-white/10"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >
+                <span id="partyDisplay" class="block text-[var(--text-muted)]">Select party size</span>
+                <svg
+                  class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--green-400)]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                  <option value=""></option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                </select>
-                <label
-                  for="partySize"
-                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
-                  >Party Size *</label
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <ul
+                id="partyList"
+                class="absolute z-50 mt-2 w-full max-h-56 overflow-auto rounded-xl border border-white/10 shadow-xl bg-[var(--bg-olive)] text-[var(--text)] hidden"
+                role="listbox"
+              >
+                <li
+                  role="option"
+                  data-value=""
+                  class="px-4 py-2 text-[var(--text-muted)] hover:bg-[var(--bg-emerald)] cursor-pointer"
                 >
-                <p class="mt-1 text-xs text-red-300 hidden" data-error="partySize"></p>
-              </div>
-              <div class="relative">
+                  — None —
+                </li>
+                <li
+                  role="option"
+                  data-value="1"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  1
+                </li>
+                <li
+                  role="option"
+                  data-value="2"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  2
+                </li>
+                <li
+                  role="option"
+                  data-value="3"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  3
+                </li>
+                <li
+                  role="option"
+                  data-value="4"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  4
+                </li>
+                <li
+                  role="option"
+                  data-value="5"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  5
+                </li>
+                <li
+                  role="option"
+                  data-value="6"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  6
+                </li>
+                <li
+                  role="option"
+                  data-value="7"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  7
+                </li>
+                <li
+                  role="option"
+                  data-value="8"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  8
+                </li>
+                <li
+                  role="option"
+                  data-value="9"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  9
+                </li>
+                <li
+                  role="option"
+                  data-value="10"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  10
+                </li>
+                <li
+                  role="option"
+                  data-value="11"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  11
+                </li>
+                <li
+                  role="option"
+                  data-value="12"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  12
+                </li>
+              </ul>
+              <p class="mt-1 text-xs text-red-300 hidden" data-error="partySize"></p>
+            </div>
+
+            <!-- Date (with overlay placeholder) -->
+            <div class="relative" id="dateField">
+              <!-- <span class="absolute left-4 top-1 text-xs text-[var(--green-400)]">Date *</span> -->
+
+              <div
+                id="dateClickWrapper"
+                class="w-full mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pr-10 focus-within:border-[var(--green-600)] focus-within:ring-2 focus-within:ring-[var(--green-600)]/30 text-[var(--text)] cursor-pointer flex items-center relative"
+              >
+                <!-- overlay placeholder -->
+                <span id="datePlaceholder" class="date-placeholder">Select a date</span>
+
                 <input
                   name="date"
+                  id="date"
                   type="date"
                   required
-                  id="date"
-                  class="peer w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
-                  placeholder=" "
+                  class="bg-transparent border-0 outline-none flex-1 text-[var(--text)] cursor-pointer"
+                  aria-describedby="datePlaceholder"
+                  autocomplete="off"
                 />
-                <label
-                  for="date"
-                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
-                  >Date *</label
+                <svg
+                  class="w-4 h-4 text-[var(--green-400)]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                <p class="mt-1 text-xs text-red-300 hidden" data-error="date"></p>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 7V3m8 4V3M3 9h18M5 12h14M5 16h10m-9 5h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5A2 2 0 0 0 3 7v12a2 2 0 0 0 2 2z"
+                  />
+                </svg>
               </div>
-              <div class="relative">
-                <select
-                  name="time"
-                  required
-                  id="time"
-                  class="peer appearance-none w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
-                >
-                  <option value=""></option>
-                  <option>17:00</option>
-                  <option>17:30</option>
-                  <option>18:00</option>
-                  <option>18:30</option>
-                  <option>19:00</option>
-                  <option>19:30</option>
-                  <option>20:00</option>
-                  <option>20:30</option>
-                  <option>21:00</option>
-                </select>
-                <label
-                  for="time"
-                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
-                  >Time *</label
-                >
-                <p class="mt-1 text-xs text-red-300 hidden" data-error="time"></p>
-              </div>
+
+              <p class="mt-1 text-xs text-red-300 hidden" data-error="date"></p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div class="relative">
-                <select
-                  name="occasion"
-                  id="occasion"
-                  class="peer appearance-none w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pt-5 focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition"
+            <!-- Time -->
+            <div class="relative" id="timeDropdown">
+              <input type="hidden" name="time" id="timeValue" value="" />
+              <!-- <span class="absolute left-4 top-1 text-xs text-[var(--green-400)]">Time *</span> -->
+
+              <button
+                id="timeButton"
+                type="button"
+                class="w-full mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pr-10 text-left focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition text-[var(--text)] hover:bg-white/10"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >
+                <span id="timeDisplay" class="block text-[var(--text-muted)]">Select a time</span>
+                <svg
+                  class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--green-400)]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                  <option value=""></option>
-                  <option>birthday</option>
-                  <option>anniversary</option>
-                  <option>business</option>
-                  <option>other</option>
-                </select>
-                <label
-                  for="occasion"
-                  class="pointer-events-none absolute left-4 top-3 text-[var(--text-muted)] transition-all peer-focus:top-1 peer-focus:text-xs peer-focus:text-[var(--green-400)] peer-[&:not(:placeholder-shown)]:top-1 peer-[&:not(:placeholder-shown)]:text-xs"
-                  >Occasion</label
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <ul
+                id="timeList"
+                class="absolute z-50 mt-2 w-full max-h-56 overflow-auto rounded-xl border border-white/10 shadow-xl bg-[var(--bg-olive)] text-[var(--text)] hidden"
+                role="listbox"
+              >
+                <li
+                  role="option"
+                  data-value=""
+                  class="px-4 py-2 text-[var(--text-muted)] hover:bg-[var(--bg-emerald)] cursor-pointer"
                 >
-              </div>
-              <div class="sm:col-span-2">
-                <span class="block text-sm font-medium mb-2 text-[var(--text-muted)]"
-                  >Seating preference</span
+                  — None —
+                </li>
+                <li
+                  role="option"
+                  data-value="17:00"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
                 >
-                <div class="grid grid-cols-3 gap-3">
-                  <label
-                    class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center justify-center gap-2 has-[:checked]:border-[var(--green-600)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--green-600)]/30 cursor-pointer"
-                    ><input type="radio" name="seating" value="indoor" class="sr-only" /> Indoor</label
-                  >
-                  <label
-                    class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center justify-center gap-2 has-[:checked]:border-[var(--green-600)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--green-600)]/30 cursor-pointer"
-                    ><input type="radio" name="seating" value="terrace" class="sr-only" /> Terrace</label
-                  >
-                  <label
-                    class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 flex items-center justify-center gap-2 has-[:checked]:border-[var(--green-600)] has-[:checked]:ring-2 has-[:checked]:ring-[var(--green-600)]/30 cursor-pointer"
-                    ><input type="radio" name="seating" value="bar" class="sr-only" /> Bar</label
-                  >
-                </div>
-              </div>
+                  17:00
+                </li>
+                <li
+                  role="option"
+                  data-value="17:30"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  17:30
+                </li>
+                <li
+                  role="option"
+                  data-value="18:00"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  18:00
+                </li>
+                <li
+                  role="option"
+                  data-value="18:30"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  18:30
+                </li>
+                <li
+                  role="option"
+                  data-value="19:00"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  19:00
+                </li>
+                <li
+                  role="option"
+                  data-value="19:30"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  19:30
+                </li>
+                <li
+                  role="option"
+                  data-value="20:00"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  20:00
+                </li>
+                <li
+                  role="option"
+                  data-value="20:30"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  20:30
+                </li>
+                <li
+                  role="option"
+                  data-value="21:00"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  21:00
+                </li>
+              </ul>
+              <p class="mt-1 text-xs text-red-300 hidden" data-error="time"></p>
             </div>
 
+            <!-- Occasion -->
+            <div class="relative" id="occasionDropdown">
+              <input type="hidden" name="occasion" id="occasionValue" value="" />
+              <!-- <span class="absolute left-4 top-1 text-xs text-[var(--green-400)]">Occasion</span> -->
+
+              <button
+                id="occasionButton"
+                type="button"
+                class="w-full mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 pr-10 text-left focus:border-[var(--green-600)] focus:ring-2 focus:ring-[var(--green-600)]/30 outline-none transition text-[var(--text)] hover:bg-white/10"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >
+                <span id="occasionDisplay" class="block text-[var(--text-muted)]">Select an occasion</span>
+                <svg
+                  class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--green-400)]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <ul
+                id="occasionList"
+                class="absolute z-50 mt-2 w-full max-h-56 overflow-auto rounded-xl border border-white/10 shadow-xl bg-[var(--bg-olive)] text-[var(--text)] hidden"
+                role="listbox"
+              >
+                <li
+                  role="option"
+                  data-value=""
+                  class="px-4 py-2 text-[var(--text-muted)] hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  — None —
+                </li>
+                <li
+                  role="option"
+                  data-value="Birthday"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  Birthday
+                </li>
+                <li
+                  role="option"
+                  data-value="Anniversary"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  Anniversary
+                </li>
+                <li
+                  role="option"
+                  data-value="Business"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  Business
+                </li>
+                <li
+                  role="option"
+                  data-value="Other"
+                  class="px-4 py-2 hover:bg-[var(--bg-emerald)] cursor-pointer"
+                >
+                  Other
+                </li>
+              </ul>
+            </div>
+
+            <!-- Notes -->
             <div class="relative">
               <textarea
                 name="notes"
@@ -670,17 +851,19 @@
               >
             </div>
 
+            <!-- Consent + Submit -->
             <div class="space-y-4">
-              <label class="flex items-start gap-3 text-sm text-[var(--text-muted)]"
-                ><input
+              <label class="flex items-start gap-3 text-sm text-[var(--text-muted)]">
+                <input
                   type="checkbox"
                   name="consent"
                   required
                   class="mt-1 h-4 w-4 rounded border-white/20 text-[var(--bg-deep)] focus:ring-[var(--green-600)]"
                 />
                 I agree to the
-                <a href="#" class="text-[var(--green-200)] underline ml-1">privacy policy</a>.</label
-              >
+                <a href="#" id="privacyFooterLink" class="hover:text-[var(--green-200)]">Privacy</a>
+              </label>
+
               <div class="flex items-center gap-3">
                 <button
                   id="submitBtn"
@@ -716,7 +899,7 @@
       </div>
     </footer>
 
-    <!-- Lightbox Modal -->
+    <!-- Lightbox -->
     <div
       id="lightbox"
       class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/80 p-4"
@@ -739,12 +922,10 @@
       aria-hidden="true"
     >
       <div class="relative w-full max-w-4xl h-[80vh] flex flex-col">
-        <!-- Close button -->
         <button id="pdfClose" class="absolute -top-10 right-0 text-white text-2xl" aria-label="Close">
           ×
         </button>
 
-        <!-- PDF container -->
         <div class="glass rounded-2xl border border-white/10 shadow-xl overflow-hidden flex-1">
           <h2 id="pdfTitle" class="sr-only">BOCADO — Menu</h2>
           <iframe
@@ -754,209 +935,98 @@
           ></iframe>
         </div>
 
-        <!-- Fallback link -->
         <p class="mt-3 text-center text-[var(--text-muted)] text-sm">
           Having trouble? <a href="/assets/menu/bocado_menu.pdf" class="underline">Open the PDF</a>
         </p>
       </div>
     </div>
 
-    <!-- Inline JS for interactions -->
-    <script>
-      const $ = (s, root = document) => root.querySelector(s);
-      const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
+    <!-- Privacy Policy Modal -->
+    <div
+      id="policyModal"
+      class="fixed inset-0 z-[75] hidden bg-black/80 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="policyTitle"
+      aria-describedby="policyBody"
+      aria-hidden="true"
+    >
+      <div class="relative w-full max-w-3xl max-h-[85vh]">
+        <!-- Close button -->
+        <button id="policyClose" class="absolute -top-10 right-0 text-white text-2xl" aria-label="Close">
+          ×
+        </button>
 
-      // Current year
-      const yearEl = document.getElementById("year");
-      if (yearEl) yearEl.textContent = new Date().getFullYear().toString();
+        <article class="glass rounded-2xl border border-white/10 shadow-xl overflow-hidden">
+          <header class="px-6 py-4 border-b border-white/10 bg-[var(--bg-emerald)]">
+            <h2 id="policyTitle" class="font-heading text-2xl">Privacy Policy</h2>
+          </header>
 
-      // Mobile nav
-      const navToggle = $("#navToggle");
-      const mobileNav = $("#mobileNav");
-      if (navToggle && mobileNav) {
-        navToggle.addEventListener("click", () => {
-          const open = mobileNav.classList.toggle("hidden") ? false : true;
-          navToggle.setAttribute("aria-expanded", String(open));
-        });
-        $$("#mobileNav a").forEach((a) =>
-          a.addEventListener("click", () => {
-            mobileNav.classList.add("hidden");
-            navToggle.setAttribute("aria-expanded", "false");
-          })
-        );
-      }
+          <div
+            id="policyBody"
+            class="px-6 py-5 overflow-y-auto max-h-[70vh] space-y-4 text-[var(--text-muted)]"
+          >
+            <p>
+              <strong>BOCADO</strong> (“we”, “us”) respects your privacy. This notice explains what we collect
+              on this site and why.
+            </p>
 
-      // Smooth scrolling with focus management
-      $$('a[href^="#"]').forEach((link) => {
-        link.addEventListener("click", (e) => {
-          const id = link.getAttribute("href");
-          if (!id || id === "#") return;
-          const target = $(id);
-          if (!target) return;
-          e.preventDefault();
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-          setTimeout(() => {
-            const h2 = target.querySelector("h2,h1");
-            if (h2) h2.setAttribute("tabindex", "-1"), h2.focus({ preventScroll: true });
-          }, 500);
-        });
-      });
+            <h3 class="font-semibold text-[var(--text)]">Data we collect</h3>
+            <ul class="list-disc pl-6 space-y-1">
+              <li>Booking details: name, email, party size, date/time, occasion, notes.</li>
+              <li>Technical data: IP address, device/browser info, and basic analytics (aggregated).</li>
+            </ul>
 
-      // Tabs (Menu)
-      const tabs = $$(".tab");
-      const panels = $$(".tab-panel");
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          tabs.forEach((t) => t.classList.remove("active"));
-          tab.classList.add("active");
-          const target = tab.dataset.tab;
-          panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== target));
-        });
-      });
+            <h3 class="font-semibold text-[var(--text)]">How we use your data</h3>
+            <ul class="list-disc pl-6 space-y-1">
+              <li>To process and confirm your booking and contact you about it.</li>
+              <li>To improve our website and service quality.</li>
+              <li>To comply with legal obligations.</li>
+            </ul>
 
-      // Gallery lightbox
-      const lightbox = $("#lightbox");
-      const lightboxImg = $("#lightboxImg");
-      const lightboxClose = $("#lightboxClose");
-      $$(".gallery-thumb img").forEach((img) => {
-        img.addEventListener("click", () => {
-          lightboxImg.src = img.src.replace("w=800", "w=1600");
-          lightbox.classList.remove("hidden");
-          lightboxClose.focus();
-        });
-      });
-      lightboxClose?.addEventListener("click", () => lightbox.classList.add("hidden"));
-      lightbox?.addEventListener("click", (e) => {
-        if (e.target === lightbox) lightbox.classList.add("hidden");
-      });
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") lightbox.classList.add("hidden");
-      });
+            <h3 class="font-semibold text-[var(--text)]">Sharing</h3>
+            <p>
+              We do not sell your data. We may share it with service providers strictly to operate this
+              website (e.g., hosting, analytics, email provider) under data-processing agreements, and when
+              required by law.
+            </p>
 
-      // Booking form
-      const form = $("#bookingForm");
-      let formStart = Date.now();
-      form?.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const status = $("#formStatus");
-        const btn = $("#submitBtn");
-        if (status) status.textContent = "";
-        const data = Object.fromEntries(new FormData(form));
+            <h3 class="font-semibold text-[var(--text)]">Retention</h3>
+            <p>
+              Booking data is kept only as long as needed for reservations, legal, and accounting purposes.
+            </p>
 
-        // anti-spam
-        if (data.company) return;
-        if (Date.now() - formStart < 1500) return;
+            <h3 class="font-semibold text-[var(--text)]">Your rights</h3>
+            <p>
+              Subject to local law, you may request access, correction, deletion, or restriction of your data.
+              Contact us to exercise these rights.
+            </p>
 
-        // required validations
-        const errors = {};
-        if (!data.fullName) errors.fullName = "Please enter your full name.";
-        if (!data.email || !/^[^@]+@[^@]+\.[^@]+$/.test(data.email))
-          errors.email = "Enter a valid email address.";
-        if (!data.partySize) errors.partySize = "Select party size.";
-        if (!data.date) errors.date = "Choose a date.";
-        if (!data.time) errors.time = "Choose a time.";
-        if (!form.consent?.checked) errors.consent = "Please agree to the privacy policy.";
+            <h3 class="font-semibold text-[var(--text)]">Cookies</h3>
+            <p>
+              We use only essential and basic analytics cookies. You can control cookies in your browser
+              settings.
+            </p>
 
-        // past date prevention
-        if (data.date) {
-          const today = new Date();
-          today.setHours(0, 0, 0, 0);
-          const chosen = new Date(data.date + "T00:00:00");
-          if (chosen < today) errors.date = "Please choose a future date.";
-        }
+            <h3 class="font-semibold text-[var(--text)]">Contact</h3>
+            <p>
+              Email:
+              <a class="underline text-[var(--green-200)]" href="mailto:hello@bocado.example"
+                >hello@bocado.example</a
+              >
+            </p>
 
-        // render errors
-        $$("[data-error]").forEach((p) => p.classList.add("hidden"));
-        if (Object.keys(errors).length) {
-          for (const [k, v] of Object.entries(errors)) {
-            const el = document.querySelector(`[data-error="${k}"]`);
-            if (el) {
-              el.textContent = v;
-              el.classList.remove("hidden");
-            }
-          }
-          if (status) {
-            status.textContent = "Please correct the highlighted fields.";
-            status.className = "text-red-300";
-          }
-          return;
-        }
+            <p class="text-xs">Last updated: 15 Aug 2025</p>
+          </div>
 
-        if (btn) btn.disabled = true;
-        if (status) {
-          status.textContent = "Sending...";
-          status.className = "text-[var(--text-muted)]";
-        }
+          <footer class="px-6 py-4 border-t border-white/10 bg-[var(--bg-emerald)] flex justify-end">
+            <button id="policyAccept" class="rounded-full px-5 py-2 btn-primary font-semibold">Close</button>
+          </footer>
+        </article>
+      </div>
+    </div>
 
-        try {
-          const res = await fetch("/api/book", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              fullName: data.fullName,
-              email: data.email,
-              phone: data.phone || null,
-              partySize: Number(data.partySize),
-              date: data.date,
-              time: data.time,
-              occasion: data.occasion || null,
-              seating: data.seating || null,
-              notes: data.notes || null,
-              consent: true,
-            }),
-          });
-          const body = await res.json().catch(() => ({}));
-          if (res.status === 201 && body.ok) {
-            if (status) {
-              status.textContent = `Booking request sent. Ref: ${
-                body.reference || "BOC-" + new Date().toISOString().slice(0, 10) + "-00001"
-              }`;
-              status.className = "text-[var(--green-200)]";
-            }
-            form.reset();
-            formStart = Date.now();
-          } else {
-            throw new Error(body.error || "Server error");
-          }
-        } catch (err) {
-          if (status) {
-            status.textContent = "Sorry, something went wrong. Please try again or call us.";
-            status.className = "text-red-300";
-          }
-        } finally {
-          if (btn) btn.disabled = false;
-        }
-      });
-      // PDF Menu modal
-      const viewMenuBtn = document.querySelector("#viewMenuBtn");
-      const pdfModal = document.querySelector("#pdfModal");
-      const pdfClose = document.querySelector("#pdfClose");
-
-      function openPdfModal() {
-        pdfModal.classList.remove("hidden");
-        pdfModal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        pdfClose.focus();
-      }
-
-      function closePdfModal() {
-        pdfModal.classList.add("hidden");
-        pdfModal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-
-      viewMenuBtn?.addEventListener("click", (e) => {
-        e.preventDefault();
-        openPdfModal();
-      });
-
-      pdfClose?.addEventListener("click", closePdfModal);
-      pdfModal?.addEventListener("click", (e) => {
-        if (e.target === pdfModal) closePdfModal();
-      });
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closePdfModal();
-      });
-    </script>
+    <!-- App scripts -->
+    <script defer src="/assets/js/script.js"></script>
   </body>
 </html>
